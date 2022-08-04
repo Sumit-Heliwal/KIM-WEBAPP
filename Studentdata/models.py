@@ -23,8 +23,14 @@ class Student(models.Model):
     Masters = models.CharField(max_length=5)
     Masters_Branch = models.CharField(max_length=25)
     Masters_University = models.CharField(max_length=50)
+    
+FLOOR_CHOICES = (
+    ("Ground", "Ground"),
+    ("First", "First"),
+    ("Second", "Second"),
+)
 
 class Hostel(models.Model):
     Roll_No = models.ForeignKey(Student, on_delete=models.CASCADE)
     Room_No = models.CharField(max_length=3)
-    Floor = models.TextChoices('Floor', 'Ground First Second')
+    Floor = models.CharField(max_length=6, choices=FLOOR_CHOICES, default="Ground")

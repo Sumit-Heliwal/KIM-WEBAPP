@@ -1,5 +1,8 @@
+import json
 from django.shortcuts import render
 from datetime import datetime
+from .models import Student, Hostel
+
 # Add these to existing imports at the top of the file:
 
 
@@ -12,6 +15,15 @@ def home(request):
 
 def about(request):
     return render(request, "Studentdata/about.html")
+
+
+def student(request):
+    data = Student.objects.values()
+    return render(request, "Studentdata/student.html" , {'data': data})
+
+def hostel(request):
+    data = Hostel.objects.values()
+    return render(request, "Studentdata/hostel.html" , {'data': data})
 
 def contact(request):
     return render(request, "Studentdata/contact.html")
