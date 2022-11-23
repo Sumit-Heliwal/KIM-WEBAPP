@@ -23,6 +23,7 @@ class Student(models.Model):
     Masters = models.CharField(max_length=5)
     Masters_Branch = models.CharField(max_length=25)
     Masters_University = models.CharField(max_length=50)
+    Photo = models.ImageField()
     
 FLOOR_CHOICES = (
     ("Ground", "Ground"),
