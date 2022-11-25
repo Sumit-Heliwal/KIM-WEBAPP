@@ -8,10 +8,14 @@
 </head>
 
 <body>
-    <div >
-        <img src="{% static 'img/kiams.png' %}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" style="width: 100%;" alt="KIAMS">
-        <h1 class="" style="text-align: center;"> {% block heading %}{% endblock %} </h1>
+    <div>
+        
+
+        <img src="{% static 'img/logo-color.png' %}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" style="height: 100px;" alt="Logo">
+        <img src="{% static 'img/kiams.png' %}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" style="float: right; height: 100px;" alt="KIM">
+        
     </div>
+    <h1 class="" style="text-align: center;"> {% block heading %}{% endblock %} </h1>
 <div class="navbar">
     <a href="{% url 'home' %}" class="navbar-brand">Home</a>
     <!-- Insert below the link to Home -->
