@@ -22,6 +22,8 @@
     <a href="{% url 'about' %}" class="navbar-item">About</a>
     <a href="{% url 'student' %}" class="navbar-item">Student</a>
     <a href="{% url 'hostel' %}" class="navbar-item">Hostel</a>
+    <a href="{% url 'Employees' %}" class="navbar-item">Employees</a>
+    <a href="{% url 'Employees_details' %}" class="navbar-item">Employee Detail</a>
     <a href="{% url 'contact' %}" class="navbar-item">Contact</a>
 </div>
 
@@ -29,8 +31,8 @@
     {% block content %}
     {% endblock %}
     <hr/>
-    <footer>
-        <p>&copy;Sumit Heliwal 2022</p>
+    <footer style="text-align: center;">
+        <a href="http://sumitheliwal.xyz/" style="text-decoration: none;"><h5>&copy;Lazy Developers 2022</h5></a>
     </footer>
 </div>
 </body>
