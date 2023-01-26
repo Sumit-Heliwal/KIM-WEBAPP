@@ -4,6 +4,12 @@ Student{% endblock %}
 {% block heading %}
 Student Data{% endblock %}
 {% block content %}
+
+<table>
+    {{ data.as_table }}
+</table>
+
+
 {% for each in data %}
 <table>
     {% for key,value in each.items %}

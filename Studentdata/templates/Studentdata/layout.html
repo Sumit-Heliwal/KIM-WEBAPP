@@ -1,39 +1,98 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <title>{% block title %}{% endblock %}</title>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'Studentdata/site.css' %}"/>
-</head>
-
-<body>
+    <title>{% block title %}{% endblock %}</title>
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'Studentdata/site.css' %}"/> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'Studentdata/navbar.css' %}"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  </head>
+  <body class="p-3 m-0 border-0 bd-example">
     <div>
-        
-
-        <img src="{% static 'img/management-suite-high-resolution-color-logo.png' %}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" style="width: 40%;" alt="management-suite">
-        <img src="{% static 'img/kiams.png' %}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" style="float: right; width: 40%;" alt="KIM">
-        
+        <img src="{% static 'img/kiams.png' %}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" style="width: 40%;" alt="management-suite">
+        <img src="{% static 'img/bw_full.png' %}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" style="float: right; width: 40%;" alt="KIM">
     </div>
-    <h1 class="" style="text-align: center;"> {% block heading %}{% endblock %} </h1>
-<div class="navbar">
-    <a href="{% url 'home' %}" class="navbar-brand">Home</a>
-    <!-- Insert below the link to Home -->
-    <a href="{% url 'about' %}" class="navbar-item">About</a>
-    <a href="{% url 'student' %}" class="navbar-item">Student</a>
-    <a href="{% url 'hostel' %}" class="navbar-item">Hostel</a>
-    <a href="{% url 'Employees' %}" class="navbar-item">Employees</a>
-    <a href="{% url 'Employees_details' %}" class="navbar-item">Employee Detail</a>
-    <a href="{% url 'contact' %}" class="navbar-item">Contact</a>
-</div>
+    <h1 class="" style="text-align: center;">  </h1>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"><b>{% block heading %}{% endblock %}</b></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="main_nav">
+            <ul class="navbar-nav">
+              <li class="nav-item active"> <a class="nav-link" href="{% url 'home' %}">Home </a> </li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'about' %}"> About </a></li>
+              <li class="nav-item dropdown" id="myDropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> HR Department </a>
+                <ul class="dropdown-menu">
+                  <li> <a class="dropdown-item" href="#"> Dropdown item 2 &raquo; </a>
+                    <ul class="submenu dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Submenu item 1</a></li>
+                      <li><a class="dropdown-item" href="#">Submenu item 2</a></li>
+                      <li><a class="dropdown-item" href="#">Submenu item 4</a></li>
+                      <li><a class="dropdown-item" href="#">Submenu item 5</a></li>
+                    </ul>
+                  </li>
+                  <li><a class="dropdown-item" href="#"> Dropdown item 3 </a></li>
+                  <li><a class="dropdown-item" href="#"> Dropdown item 4 </a></li>
+                </ul>
+              </li>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link disabled dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Admin Department
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'student' %}">Student</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'hostel' %}">Hostel</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'Employees' %}">Employees</a>
+              </li> <!-- <li class="nav-item">
+                <a class="nav-link disabled">Disabled</a>
+              </li> -->
+            </ul>
+            <!-- <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form> -->
+          </div>
+        </div>
+      </nav>
+        <!-- Insert below the link to Home -->
+        <a href="{% url 'Employees_details' %}" class="navbar-item">Employee Detail</a>
+        <a href="{% url 'contact' %}" class="navbar-item">Contact</a>
+    </div>
 
-<div class="body-content">
-    {% block content %}
-    {% endblock %}
-    <hr/>
-    <footer style="text-align: center;">
-        <a href="http://sumitheliwal.xyz/" style="text-decoration: none;"><h5>&copy;Lazy Developers 2022</h5></a>
-    </footer>
-</div>
-</body>
+    <div class="body-content">
+        {% block content %}
+        {% endblock %}
+        <hr/>
+        <footer style="text-align: center;">
+            <a href="http://sumitheliwal.xyz/" style="text-decoration: none;"><h5>&copy;Lazy Developers 2022</h5></a>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="{% static 'Studentdata/navbar.js' %}"></script>
+  </body>
 </html>
+

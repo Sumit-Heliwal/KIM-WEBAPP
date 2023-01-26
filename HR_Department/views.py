@@ -1,7 +1,14 @@
 import json
-from django.shortcuts import render
 from datetime import datetime
 from .models import Reporting_Officer, Employee_Data
+from .forms import *
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django import forms
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate, login, logout
+
 
 # Add these to existing imports at the top of the file:
 
@@ -18,6 +25,16 @@ def Employee_list(request):
 def Data_Input(request):
     data = Employee_Data.objects.values()
     return render(request, "Studentdata/hostel.html" , {'data': data})
+
+def add_Employee(request):
+    title ="Add Product"
+    form = Add_Employee(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            # save the form data to model
+            form.save()
+    return render(request, "Studentdata/input_data.html" , {'data': form})
+
 
 # def contact(request):
 #     return render(request, "Studentdata/contact.html")

@@ -1,0 +1,35 @@
+{% extends "Studentdata/layout.html" %}
+{% block title %}
+Data Input{% endblock %}
+{% block heading %}
+Data Input{% endblock %}
+{% block content %}
+
+<form action = "" method = "post">
+
+    
+   
+    <table class="table">
+        <tbody>
+            {% csrf_token %}
+            {% for field in data %}
+        
+          <tr>
+            <td>{{ field.label }}</td>
+            <td>{{ field }}</td>
+          </tr>
+          <tr>
+    {% endfor %}
+<tr><td colspan="2" align="centre">
+    <input type="submit" value="Submit">
+</td></tr>
+        </tbody>
+      </table>
+    
+</form>
+
+<hr>
+
+
+
+{% endblock %}
