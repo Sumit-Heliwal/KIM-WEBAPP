@@ -1,8 +1,8 @@
 {% extends "Studentdata/layout.html" %}
 {% block title %}
-Data Input{% endblock %}
+{{title}}{% endblock %}
 {% block heading %}
-Data Input{% endblock %}
+{{title}}{% endblock %}
 {% block content %}
 
 <form action = "" method = "post">
@@ -19,10 +19,12 @@ Data Input{% endblock %}
             <td>{{ field }}</td>
           </tr>
           <tr>
-    {% endfor %}
-<tr><td colspan="2" align="centre">
-    <input type="submit" value="Submit">
-</td></tr>
+            {% endfor %}
+          <tr>
+            <td style="text-align: center ">
+              <input type="submit" value="Submit">
+            </td>
+          </tr>
         </tbody>
       </table>
     

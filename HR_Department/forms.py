@@ -11,6 +11,13 @@ class Add_Employee(forms.ModelForm):
         model = Employee_Data
         fields = "__all__"
 
+class Add_Employee_code(forms.ModelForm):
+    # specify the name of model to use
+    class Meta:
+        model = Reporting_Officer
+        fields = "__all__"
+
+
 # class Product(forms.ModelForm):
 #     # specify the name of model to use
 #     class Meta:

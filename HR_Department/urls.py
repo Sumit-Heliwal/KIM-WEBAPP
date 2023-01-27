@@ -10,5 +10,6 @@ urlpatterns = [
     path("Employee_list/", views.Employee_list, name="Employees"),
     path("Data_Input/", views.Data_Input, name="Employees_details"),
     path('Add_Employee/', views.add_Employee, name='add_Employee'),
+    path('Add_Employee_Code/', views.add_Employee_code, name='add_Employee_code'),
 
 ]

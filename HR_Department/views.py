@@ -27,14 +27,22 @@ def Data_Input(request):
     return render(request, "Studentdata/hostel.html" , {'data': data})
 
 def add_Employee(request):
-    title ="Add Product"
+    title ="Add Employee"
     form = Add_Employee(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
             # save the form data to model
             form.save()
-    return render(request, "Studentdata/input_data.html" , {'data': form})
+    return render(request, "Studentdata/input_data.html" , {'data': form , 'title':title})
 
+def add_Employee_code(request):
+    title ="Add Employee Code"
+    form = Add_Employee_code(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            # save the form data to model
+            form.save()
+    return render(request, "Studentdata/input_data.html" , {'data': form , 'title':title})
 
 # def contact(request):
 #     return render(request, "Studentdata/contact.html")
