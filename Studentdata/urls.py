@@ -12,4 +12,5 @@ urlpatterns = [
     path("student/", views.student, name="student"),
     path("hostel/", views.hostel, name="hostel"),
     path("contact/", views.contact, name="contact"),
+
 ]

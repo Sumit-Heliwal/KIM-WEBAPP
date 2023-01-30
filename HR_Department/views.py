@@ -19,12 +19,14 @@ from django.contrib.auth import authenticate, login, logout
 
 
 def Employee_list(request):
+    title ="Employee Code"
     data = Reporting_Officer.objects.values()
-    return render(request, "Studentdata/student.html" , {'data': data})
+    return render(request, "Studentdata/student.html" , {'data': data , 'title':title})
 
 def Data_Input(request):
+    title ="Employee Data"
     data = Employee_Data.objects.values()
-    return render(request, "Studentdata/hostel.html" , {'data': data})
+    return render(request, "Studentdata/student.html" , {'data': data , 'title':title})
 
 def add_Employee(request):
     title ="Add Employee"
@@ -44,6 +46,51 @@ def add_Employee_code(request):
             form.save()
     return render(request, "Studentdata/input_data.html" , {'data': form , 'title':title})
 
+
+def search_view_name(request):
+        title ="Search"
+        if request.method == 'POST':
+                searchobj = request.POST.get('name')
+                if(Reporting_Officer.objects.filter(Emp_Code=searchobj).exists()):
+                    obj = Reporting_Officer.objects.filter(Emp_Code = searchobj)
+                    a = True
+                    return render(request,'Studentdata/forms_search.html' ,{'title' : title , 'data' : obj , 'a' : a})     
+                else:
+                    errors = 'Invalid Name'
+                    a = False
+                    return render(request,'Studentdata/forms_search.html' ,{'title' : title , 'errors': errors , 'a' : a})     
+        return render( request, "Studentdata/forms_search.html", {'title' : title})
+        
+        # form = Add_Employee_code(request.POST or None)
+        # if request.method == 'POST':
+        #     searchobj = request.POST.get('name')
+            
+        #     if(Reporting_Officer.objects.filter(Emp_Code=searchobj).exists()):
+        #         obj = Reporting_Officer.objects.get(Emp_Code = searchobj)
+        #         a = True
+        #         form = Add_Employee_code(instance= obj)
+        #         return render(request,'Studentdata/forms_search.html' ,{'title' : title , 'obj' : obj , 'a' : a ,'data': form })     
+        #     else:
+        #         errors = 'Invalid Name'
+        #         a = False
+        #         return render(request,'Studentdata/forms_search.html' ,{'title' : title , 'errors': errors , 'a' : a , 'data': form})     
+        # return render( request, "Studentdata/forms_search.html", {'title' : title})
+   
+def edit(request, id):  
+    employee = Reporting_Officer.objects.get(Emp_Code = id)  
+    form = Add_Employee_code(instance = employee)  
+
+    return render(request,'Studentdata/edit.html', {'data':form , "id" : id})  
+
+
+def update(request, id):  
+    employee = Reporting_Officer.objects.get(Emp_Code = id)  
+    form = Add_Employee_code(request.POST, instance = employee)  
+    if form.is_valid():  
+        form.save()  
+        return redirect("Employees")  
+    return render(request, 'Studentdata/edit.html', {'data': employee})  
+    
 # def contact(request):
 #     return render(request, "Studentdata/contact.html")
 

@@ -26,7 +26,7 @@
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="#"><b>{% block heading %}{% endblock %}</b></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="main_nav">
@@ -46,11 +46,12 @@
                     <ul class="submenu dropdown-menu">
                       <li><a class="dropdown-item" href="{% url 'Employees' %}">View</a></li>
                       <li><a class="dropdown-item" href="{% url 'add_Employee_code' %}">Add</a></li>
-                      <li><a class="dropdown-item" href="#">Edit</a></li>
+                      <li><a class="dropdown-item" href="{% url 'search_cd' %}">Search and Edit</a></li>
                     </ul>
                   </li>
                   <li> <a class="dropdown-item" href="#"> Employee Data &raquo; </a>
                     <ul class="submenu dropdown-menu">
+                      <li><a class="dropdown-item" href="{% url 'Employees_details' %}">View</a></li>
                       <li><a class="dropdown-item" href="{% url 'add_Employee' %}">Add</a></li>
                       <li><a class="dropdown-item" href="#">Edit</a></li>
                       <li><a class="dropdown-item" href="#">Delete</a></li>
@@ -75,9 +76,7 @@
               <li class="nav-item dropdown" id="myDropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> Admin Department </a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item">
-                    <a class="nav-link" href="{% url 'hostel' %}">Hostel</a>
-                  </li>
+                  <li><a class="dropdown-item" href="{% url 'hostel' %}">Hostel</a></li>
                   <li> <a class="dropdown-item disabled" href="#"> Employee Code &raquo; </a>
                     <ul class="submenu dropdown-menu">
                       <li><a class="dropdown-item" href="#">Add 1</a></li>
@@ -99,7 +98,6 @@
           </div>
         </div>
       </nav>
-    </div>
 
     <div class="body-content">
         {% block content %}

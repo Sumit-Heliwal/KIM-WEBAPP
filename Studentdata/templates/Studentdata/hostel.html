@@ -1,21 +1,21 @@
 {% extends "Studentdata/layout.html" %}
 {% block title %}
-Hostel{% endblock %}
+{{title}}{% endblock %}
 {% block heading %}
-Hostel Data{% endblock %}
+{{title}}{% endblock %}
+
 {% block content %}
 {% for each in data %}
-<table>
-    {% for key,value in each.items %}
-    <tr>
+<table class="table">
+    <tbody>
+        {% for key,value in each.items %}
+        <tr>
         <td>{{key}} </td>:<td>{{value}}</td>
     </tr>
 
     {%endfor%}
-
-
+    </tbody>
 </table>
-<hr>
 
 {%endfor%}
 
