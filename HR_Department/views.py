@@ -88,8 +88,11 @@ def update(request, id):
     form = Add_Employee_code(request.POST, instance = employee)  
     if form.is_valid():  
         form.save()  
-        return redirect("Employees")  
-    return render(request, 'Studentdata/edit.html', {'data': employee})  
+        return redirect("Employees") 
+    else:
+        errors = "Error Occured! Can be a Duplicate Name"
+        return render(request,'Studentdata/edit.html' , {'data': form, "id" : id ,'errors': errors}) 
+    return render(request, 'Studentdata/edit.html', {'data': form, "id" : id})  
     
 # def contact(request):
 #     return render(request, "Studentdata/contact.html")
