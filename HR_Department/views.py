@@ -18,12 +18,73 @@ from django.contrib.auth import authenticate, login, logout
 # Replace the existing home function with the one below
 
 
-def Employee_list(request):
+def Employee_code_list(request):
     title ="Employee Code"
     data = Reporting_Officer.objects.values()
     return render(request, "Studentdata/student.html" , {'data': data , 'title':title})
 
-def Data_Input(request):
+def add_Employee_code(request):
+    title ="Add Employee Code"
+    form = Add_Employee_code(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            # save the form data to model
+            form.save()
+            return redirect("view_Employee_code") 
+    return render(request, "Studentdata/input_data.html" , {'data': form , 'title':title})
+
+
+def search_Employee_code(request):
+    title ="Search"
+    if request.method == 'POST':
+        searchobj = request.POST.get('name')
+        if(Reporting_Officer.objects.filter(Emp_Code=searchobj).exists()):
+            obj = Reporting_Officer.objects.filter(Emp_Code = searchobj)
+            a = True
+            return render(request,'Studentdata/forms_search_employee_code.html' ,{'title' : title , 'data' : obj , 'a' : a})     
+        else:
+            errors = 'Invalid Employee_code'
+            a = False
+            return render(request,'Studentdata/forms_search_employee_code.html' ,{'title' : title , 'errors': errors , 'a' : a})     
+    return render( request, "Studentdata/forms_search_employee_code.html", {'title' : title})
+        
+        # form = Add_Employee_code(request.POST or None)
+        # if request.method == 'POST':
+        #     searchobj = request.POST.get('name')
+            
+        #     if(Reporting_Officer.objects.filter(Emp_Code=searchobj).exists()):
+        #         obj = Reporting_Officer.objects.get(Emp_Code = searchobj)
+        #         a = True
+        #         form = Add_Employee_code(instance= obj)
+        #         return render(request,'Studentdata/forms_search_employee_code.html' ,{'title' : title , 'obj' : obj , 'a' : a ,'data': form })     
+        #     else:
+        #         errors = 'Invalid Name'
+        #         a = False
+        #         return render(request,'Studentdata/forms_search_employee_code.html' ,{'title' : title , 'errors': errors , 'a' : a , 'data': form})     
+        # return render( request, "Studentdata/forms_search_employee_code.html", {'title' : title})
+          
+def edit_Employee_code(request, id):  
+    title = 'Edit'
+    employee = Reporting_Officer.objects.get(Emp_Code = id)  
+    form = Add_Employee_code(instance = employee)  
+
+    return render(request,'Studentdata/edit_employee_code.html', {'data':form , "id" : id, 'title': title})  
+
+
+def update_Employee_code(request, id):
+    title = "Update"  
+    employee = Reporting_Officer.objects.get(Emp_Code = id)  
+    form = Add_Employee_code(request.POST, instance = employee)  
+    if form.is_valid():  
+        form.save()  
+        return redirect("view_Employee_code") 
+    else:
+        errors = "Error Occured! Can be a Duplicate Name"
+        return render(request,'Studentdata/edit_employee_code.html' , {'data': form, "id" : id ,'errors': errors , 'title': title}) 
+    
+#############################  Employee Details   #########################################################
+    
+def Employees_details(request):
     title ="Employee Data"
     data = Employee_Data.objects.values()
     return render(request, "Studentdata/student.html" , {'data': data , 'title':title})
@@ -35,64 +96,45 @@ def add_Employee(request):
         if form.is_valid():
             # save the form data to model
             form.save()
+            return redirect("Employees_details") 
     return render(request, "Studentdata/input_data.html" , {'data': form , 'title':title})
-
-def add_Employee_code(request):
-    title ="Add Employee Code"
-    form = Add_Employee_code(request.POST or None)
-    if request.method == 'POST':
-        if form.is_valid():
-            # save the form data to model
-            form.save()
-    return render(request, "Studentdata/input_data.html" , {'data': form , 'title':title})
-
-
-def search_view_name(request):
-        title ="Search"
-        if request.method == 'POST':
-                searchobj = request.POST.get('name')
-                if(Reporting_Officer.objects.filter(Emp_Code=searchobj).exists()):
-                    obj = Reporting_Officer.objects.filter(Emp_Code = searchobj)
-                    a = True
-                    return render(request,'Studentdata/forms_search.html' ,{'title' : title , 'data' : obj , 'a' : a})     
-                else:
-                    errors = 'Invalid Name'
-                    a = False
-                    return render(request,'Studentdata/forms_search.html' ,{'title' : title , 'errors': errors , 'a' : a})     
-        return render( request, "Studentdata/forms_search.html", {'title' : title})
-        
-        # form = Add_Employee_code(request.POST or None)
-        # if request.method == 'POST':
-        #     searchobj = request.POST.get('name')
             
-        #     if(Reporting_Officer.objects.filter(Emp_Code=searchobj).exists()):
-        #         obj = Reporting_Officer.objects.get(Emp_Code = searchobj)
-        #         a = True
-        #         form = Add_Employee_code(instance= obj)
-        #         return render(request,'Studentdata/forms_search.html' ,{'title' : title , 'obj' : obj , 'a' : a ,'data': form })     
-        #     else:
-        #         errors = 'Invalid Name'
-        #         a = False
-        #         return render(request,'Studentdata/forms_search.html' ,{'title' : title , 'errors': errors , 'a' : a , 'data': form})     
-        # return render( request, "Studentdata/forms_search.html", {'title' : title})
-   
-def edit(request, id):  
-    employee = Reporting_Officer.objects.get(Emp_Code = id)  
-    form = Add_Employee_code(instance = employee)  
+def search_Employee_details(request):
+    title ="Search"
+    if request.method == 'POST':
+        searchobj = request.POST.get('name')
+        if(Employee_Data.objects.filter(Emp_Code = searchobj).exists()):
+            obj = Employee_Data.objects.filter(Emp_Code = searchobj)
+            for each in obj:
+                data = str(each.Emp_Code) 
+            code = data[:4]              
+            a = True
+            return render(request,'Studentdata/forms_search_employee_data.html' ,{'title' : title , 'code' : code , 'data':obj, 'a' : a})     
+        else:
+            errors = 'Invalid Employee_code'
+            a = False
+            return render(request,'Studentdata/forms_search_employee_data.html' ,{'title' : title , 'errors': errors , 'a' : a})     
+    return render( request, "Studentdata/forms_search_employee_data.html", {'title' : title})
+    
 
-    return render(request,'Studentdata/edit.html', {'data':form , "id" : id})  
+def edit_Employee_details(request, id):  
+    title = 'Edit'
+    employee = Employee_Data.objects.get(Emp_Code = id)  
+    form = Add_Employee(instance = employee)  
+
+    return render(request,'Studentdata/edit_employee_data.html', {'data':form , "id" : id, 'title': title})  
 
 
-def update(request, id):  
-    employee = Reporting_Officer.objects.get(Emp_Code = id)  
-    form = Add_Employee_code(request.POST, instance = employee)  
+def update_Employee_details(request, id):
+    title = "Update"  
+    employee = Employee_Data.objects.get(Emp_Code = id)  
+    form = Add_Employee(request.POST, instance = employee)  
     if form.is_valid():  
         form.save()  
-        return redirect("Employees") 
+        return redirect("view_Employee_code") 
     else:
         errors = "Error Occured! Can be a Duplicate Name"
-        return render(request,'Studentdata/edit.html' , {'data': form, "id" : id ,'errors': errors}) 
-    return render(request, 'Studentdata/edit.html', {'data': form, "id" : id})  
+        return render(request,'Studentdata/edit_employee_data.html' , {'data': form, "id" : id ,'errors': errors , 'title': title}) 
     
 # def contact(request):
 #     return render(request, "Studentdata/contact.html")

@@ -13,11 +13,11 @@
             <div class="col-12 px-4 py-3">
                 <div class="row mt-2">
                     <div class="col-lg-10">
-                        <form method="post" style="margin-top: 5%" action="{% url 'search_cd' %}">
+                        <form method="post" style="margin-top: 5%" action="{% url 'search_Employee_code' %}">
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-lg-2 col-12 mb-3">
-                                    <label for="id_name">Emp_Code</label>
+                                    <label class="font-weight-bold" for="id_name">Emp_Code</label>
                                 </div>
                                 <div class="col-lg-6 col-12 mb-3">
                                     <input type="text" name="name" maxlength="30" required id="id_name">
@@ -33,33 +33,37 @@
                 <div class="container mt-5 text-center">
                     <table class="table">
                         <tbody>
-                            {% for each in data %}
                             <tr>
-                            <td>{{each.Emp_Code}} </td><td>{{each.Employee_Name}}</td>
-                            <td>  
-                                <a href="/edit/{{ each.Emp_Code }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>  
-                            </td>  
-                        </tr>
-                        {%endfor%}
+                                <th>Emp_Code</th><th>Employee_Name</th>
+                            </tr>
+                                {% for each in data %}
+                            <tr>
+                                <td>{{each.Emp_Code}} </td><td>{{each.Employee_Name}}</td>
+                                <td>  
+                                    <a class="btn btn-primary" href="/edit_Employee_code/{{ each.Emp_Code }}">Edit</a>  
+                                </td>  
+                            </tr>
+                            {%endfor%}
                         </tbody>
                     </table>
-                    
-                    
-                            
-                {% endif %}
+                    {% endif %}
+                </div>
             </div>
         </div>
-    </div>
 
-    {% if a == False %}
-    <div id="InfoBanner">
-        <span class="reversed reversedRight">
-          <span>
-            &#9888;
-          </span>
-        </span>
-        <span class="reversed reversedLeft">
-          Warning {{errors}}!!
-        </span>
+        {% if a == False %}
+        <div id="InfoBanner">
+            <span class="reversed reversedRight">
+            <span>
+                &#9888;
+            </span>
+            </span>
+            <span class="reversed reversedLeft">
+            Warning {{errors}}!!
+            </span>
+        </div>
+        {% endif %} 
+
     </div>
-    {% endif %} {% endblock %}
+</div>   
+{% endblock %}

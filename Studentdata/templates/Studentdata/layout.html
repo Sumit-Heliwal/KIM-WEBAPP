@@ -44,16 +44,16 @@
                 <ul class="dropdown-menu">
                   <li> <a class="dropdown-item" href="#"> Employee Code &raquo; </a>
                     <ul class="submenu dropdown-menu">
-                      <li><a class="dropdown-item" href="{% url 'Employees' %}">View</a></li>
+                      <li><a class="dropdown-item" href="{% url 'view_Employee_code' %}">View</a></li>
                       <li><a class="dropdown-item" href="{% url 'add_Employee_code' %}">Add</a></li>
-                      <li><a class="dropdown-item" href="{% url 'search_cd' %}">Search and Edit</a></li>
+                      <li><a class="dropdown-item" href="{% url 'search_Employee_code' %}">Search and Edit</a></li>
                     </ul>
                   </li>
                   <li> <a class="dropdown-item" href="#"> Employee Data &raquo; </a>
                     <ul class="submenu dropdown-menu">
-                      <li><a class="dropdown-item" href="{% url 'Employees_details' %}">View</a></li>
-                      <li><a class="dropdown-item" href="{% url 'add_Employee' %}">Add</a></li>
-                      <li><a class="dropdown-item" href="#">Edit</a></li>
+                      <li><a class="dropdown-item" href="{% url 'Employees_details'  %}">View</a></li>
+                      <li><a class="dropdown-item" href="{% url 'add_Employee'  %}">Add</a></li>
+                      <li><a class="dropdown-item" href="{% url 'search_Employee_details'  %}">Search and Edit</a></li>
                       <li><a class="dropdown-item" href="#">Delete</a></li>
                     </ul>
                   </li>

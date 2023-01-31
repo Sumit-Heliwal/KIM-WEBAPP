@@ -18,12 +18,14 @@ def about(request):
 
 
 def student(request):
+    title = "Student"
     data = Student.objects.values()
-    return render(request, "Studentdata/student.html" , {'data': data})
+    return render(request, "Studentdata/student.html" , {'data': data, 'title':title})
 
 def hostel(request):
+    title = "Hostel"
     data = Hostel.objects.values()
-    return render(request, "Studentdata/hostel.html" , {'data': data})
+    return render(request, "Studentdata/hostel.html" , {'data': data , "title": title})
 
 def contact(request):
     return render(request, "Studentdata/contact.html")
