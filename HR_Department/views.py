@@ -136,6 +136,65 @@ def update_Employee_details(request, id):
         errors = "Error Occured! Can be a Duplicate Name"
         return render(request,'Studentdata/edit_employee_data.html' , {'data': form, "id" : id ,'errors': errors , 'title': title}) 
     
+
+################## Employee Education Data ############################
+
+def Employees_Education(request):
+    title ="Employee Data"
+    data = Employee_Data.objects.values()
+    return render(request, "Studentdata/student.html" , {'data': data , 'title':title})
+
+def add_Employees_Education(request):
+    title ="Add Employee"
+    form = Add_Employee(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            # save the form data to model
+            form.save()
+            return redirect("Employees_details") 
+    return render(request, "Studentdata/input_data.html" , {'data': form , 'title':title})
+            
+def search_Employees_Education(request):
+    title ="Search"
+    if request.method == 'POST':
+        searchobj = request.POST.get('name')
+        if(Employee_Data.objects.filter(Emp_Code = searchobj).exists()):
+            obj = Employee_Data.objects.filter(Emp_Code = searchobj)
+            for each in obj:
+                data = str(each.Emp_Code) 
+            code = data[:4]              
+            a = True
+            return render(request,'Studentdata/forms_search_employee_data.html' ,{'title' : title , 'code' : code , 'data':obj, 'a' : a})     
+        else:
+            errors = 'Invalid Employee_code'
+            a = False
+            return render(request,'Studentdata/forms_search_employee_data.html' ,{'title' : title , 'errors': errors , 'a' : a})     
+    return render( request, "Studentdata/forms_search_employee_data.html", {'title' : title})
+    
+
+def edit_Employees_Education(request, id):  
+    title = 'Edit'
+    employee = Employee_Data.objects.get(Emp_Code = id)  
+    form = Add_Employee(instance = employee)  
+
+    return render(request,'Studentdata/edit_employee_data.html', {'data':form , "id" : id, 'title': title})  
+
+
+def update_Employees_Education(request, id):
+    title = "Update"  
+    employee = Employee_Data.objects.get(Emp_Code = id)  
+    form = Add_Employee(request.POST, instance = employee)  
+    if form.is_valid():  
+        form.save()  
+        return redirect("view_Employee_code") 
+    else:
+        errors = "Error Occured! Can be a Duplicate Name"
+        return render(request,'Studentdata/edit_employee_data.html' , {'data': form, "id" : id ,'errors': errors , 'title': title}) 
+    
+
+
+
+
 # def contact(request):
 #     return render(request, "Studentdata/contact.html")
 

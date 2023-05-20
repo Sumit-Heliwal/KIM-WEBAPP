@@ -22,10 +22,10 @@
         <img src="{% static 'img/KIM Logo for software.JPG' %}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" style="width: 40%;" alt="management-suite">
         <img src="{% static 'img/bw_full.png' %}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" style="float: right; width: 40%;" alt="KIM">
     </div>
-    <h1 class="" style="text-align: center;">  </h1>
+    <h1 class="" style="text-align: center;"> <b>{% block heading %}{% endblock %}</b> </h1>
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#"><b>{% block heading %}{% endblock %}</b></a>
+          <a class="navbar-brand" href="#">Hi, ASD</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
